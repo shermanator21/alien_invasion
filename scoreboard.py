@@ -57,13 +57,14 @@ class Scoreboard:
         self.ships.draw(self.screen)
 
     def check_high_score(self):
-        # write the high score to all time high score txt
-        f = open("high_score.txt", "w")
         """Check to see if there's a new high score"""
         if self.stats.score > self.stats.high_score:
             self.stats.high_score = self.stats.score
             self.prep_high_score()
-            f.write(str(self.stats.high_score))
+
+            # write the high score to all time high score txt
+            f = open("high_score.txt", "w")
+            f.write(str(self.stats.score))
             f.close()
 
     def prep_level(self):
