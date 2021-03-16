@@ -35,9 +35,6 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
 
-        # Set the background color
-        self.bg_color = (230, 230, 230)
-
         # Make the Play button
         self.play_button = Button(self, "Play")
 
@@ -51,7 +48,7 @@ class AlienInvasion:
                 self._update_bullets()
                 self._update_aliens()
 
-            self._update_screen()
+            self._update_screen()  # Updates everything to the surface
 
     def _check_events(self):
         # Watch for keyboard and mouse events
@@ -136,6 +133,7 @@ class AlienInvasion:
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
 
+        # updates the score for alien/bullet colisions
         if collisions:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points + len(aliens)
